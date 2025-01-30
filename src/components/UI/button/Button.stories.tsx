@@ -23,7 +23,7 @@ export const Primary: Story = {
 export const Cart: Story = {
     render: () => {
         return (
-            <Button view="icon" size="small" type="btnIcon">
+            <Button view="icon" size="small" variant="btnIcon">
                 <img src={img} alt="" />
             </Button>
         );
@@ -33,7 +33,7 @@ export const Cart: Story = {
 export const Disabled: Story = {
     render: () => {
         return (
-            <Button view="text" size="small" type="btnDisabled">
+            <Button view="text" size="small" variant="btnDisabled">
                 Disabled
             </Button>
         );
@@ -43,7 +43,12 @@ export const Disabled: Story = {
 export const Loader: Story = {
     render: () => {
         return (
-            <Button view="text" size="small" type="btnDisabled" loader={true}>
+            <Button
+                view="text"
+                size="small"
+                variant="btnDisabled"
+                loader={true}
+            >
                 Loader
             </Button>
         );

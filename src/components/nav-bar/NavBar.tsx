@@ -7,75 +7,91 @@ import basket from 'img/basket.png';
 import { useAppDispatch, useAppSelector } from 'hooks/redux';
 import cn from 'classnames';
 import { resetProducts } from 'store/reducers/product-slice';
+import { useGetCurrentUserQuery } from 'api/login-user';
+import { CartLoading } from 'components/cart-loading';
 
 export const NavBar = () => {
     const dispatch = useAppDispatch();
     const { carts } = useAppSelector(state => state.userSlice);
     const [menuActive, setMenuActive] = useState(false);
+    const { currentData } = useGetCurrentUserQuery();
 
     return (
-        <nav className={cl.navbar}>
-            <div className="container">
-                <div className={cl.content}>
-                    <Title
-                        tag="h1"
-                        fontSize="xl"
-                        fontWeight="Bold"
-                        className={cl.logo}
-                    >
-                        <Link to="/">Goods4you</Link>
-                    </Title>
-                    <div
-                        className={
-                            menuActive
-                                ? cn(cl.menuIcon, cl.active)
-                                : cl.menuIcon
-                        }
-                        onClick={() => setMenuActive(!menuActive)}
-                    >
-                        <span />
-                    </div>
-                    <div
-                        className={
-                            menuActive
-                                ? cn(cl.menuList, cl.active)
-                                : cl.menuList
-                        }
-                    >
-                        <ul className={cl.list}>
-                            <li className={cl.item}>
-                                <Link to="/#Catalog">Catalog</Link>
-                            </li>
-                            <li className={cl.item}>
-                                <Link to="/#FAQ">FAQ</Link>
-                            </li>
-                            <li className={cl.item}>
-                                <div className={cl.basket}>
+        <CartLoading>
+            <nav className={cl.navbar}>
+                <div className="container">
+                    <div className={cl.content}>
+                        <Title
+                            tag="h1"
+                            fontSize="xl"
+                            fontWeight="Bold"
+                            className={cl.logo}
+                        >
+                            <Link to="/">Goods4you</Link>
+                        </Title>
+                        <div
+                            className={
+                                menuActive
+                                    ? cn(cl.menuIcon, cl.active)
+                                    : cl.menuIcon
+                            }
+                            onClick={() => setMenuActive(!menuActive)}
+                        >
+                            <span />
+                        </div>
+                        <div
+                            className={
+                                menuActive
+                                    ? cn(cl.menuList, cl.active)
+                                    : cl.menuList
+                            }
+                        >
+                            <ul className={cl.list}>
+                                <li className={cl.item}>
+                                    <Link to="/#Catalog">Catalog</Link>
+                                </li>
+                                <li className={cl.item}>
+                                    <Link to="/#FAQ">FAQ</Link>
+                                </li>
+                                <li className={cl.item}>
+                                    <div className={cl.basket}>
+                                        <Link
+                                            to="/cart"
+                                            onClick={() => {
+                                                dispatch(resetProducts());
+                                            }}
+                                        >
+                                            Cart
+                                        </Link>
+                                        <img src={basket} alt="" />
+                                        {carts?.totalQuantity &&
+                                        carts?.totalQuantity > 0 ? (
+                                            <div className={cl.counter}>
+                                                <span>
+                                                    {carts.totalQuantity}
+                                                </span>
+                                            </div>
+                                        ) : (
+                                            <div />
+                                        )}
+                                    </div>
+                                </li>
+                                <li className={cl.item}>
                                     <Link
-                                        to="/cart"
+                                        to="/login"
                                         onClick={() => {
                                             dispatch(resetProducts());
                                         }}
                                     >
-                                        Cart
+                                        {currentData?.firstName}{' '}
+                                        {currentData?.lastName}
                                     </Link>
-                                    <img src={basket} alt="" />
-                                    {carts.totalQuantity > 0 ? (
-                                        <div className={cl.counter}>
-                                            <span>{carts.totalQuantity}</span>
-                                        </div>
-                                    ) : (
-                                        <div />
-                                    )}
-                                </div>
-                            </li>
-                            <li className={cl.item}>
-                                <a href="#">Johnson Smith</a>
-                            </li>
-                        </ul>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </CartLoading>
     );
 };

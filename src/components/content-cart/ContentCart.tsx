@@ -19,7 +19,7 @@ export const ContentCart = () => {
                     >
                         My cart
                     </Title>
-                    {carts.totalProducts > 0 ? (
+                    {carts?.totalProducts > 0 ? (
                         <div className={cl.content}>
                             <CartProduct cart={carts} />
                             <CartPrice cart={carts} />

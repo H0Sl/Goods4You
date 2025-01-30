@@ -25,7 +25,7 @@ export const Header = () => {
                                 className={cl.button}
                                 view="text"
                                 size="big"
-                                type="btnText"
+                                variant="btnText"
                             >
                                 <span className={cl.btnSpan}>
                                     Go to shopping

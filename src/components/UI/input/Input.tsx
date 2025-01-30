@@ -3,14 +3,14 @@ import cl from './Input.module.css';
 interface InputProps {
     onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
     value?: string;
-    children: string;
+    placeholder: string;
     type?: 'text' | 'password';
 }
 
 export const Input: React.FC<InputProps> = ({
     onChange,
     value,
-    children,
+    placeholder,
     type = 'text',
 }) => {
     return (
@@ -18,8 +18,8 @@ export const Input: React.FC<InputProps> = ({
             type={type}
             onChange={onChange}
             className={cl.input}
-            placeholder={children}
-            value={value}
+            placeholder={placeholder}
+            value={value ?? ''}
         />
     );
 };

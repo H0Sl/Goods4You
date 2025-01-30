@@ -20,3 +20,22 @@
     align-items: center;
     gap:60px;
 }
+
+@media(max-width:650px){
+    .form{
+        width: 500px;
+    }
+}
+
+@media(max-width:550px){
+    .form{
+        width: 400px;
+        padding: 30px;
+    }
+}
+
+@media(max-width:450px){
+    .form{
+        width: 300px;
+    }
+}

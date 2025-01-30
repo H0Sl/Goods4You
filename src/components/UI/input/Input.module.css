@@ -2,4 +2,11 @@
     width:100%;
     padding:20px;
     background: var(--input-bg);
-    }
+}
+
+.input::placeholder{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 137%;
+    color: #b2b5bb;
+}

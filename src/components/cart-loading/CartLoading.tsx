@@ -1,16 +1,11 @@
-import { useAppDispatch } from 'hooks/redux';
-import { useEffect } from 'react';
-import { fetchCartsByUser } from 'store/reducers/action-creators';
+import { useGetCurrentUserQuery } from 'api/login-user';
+import { useCartLoading } from 'hooks/useCartLoading';
 
-export const CartLoading = () => {
-    const dispatch = useAppDispatch();
+export const CartLoading = ({ children }: { children: React.ReactNode }) => {
+    const { currentData } = useGetCurrentUserQuery();
+    const id: number = currentData?.id ?? 0;
 
-    useEffect(() => {
-        const source = dispatch(fetchCartsByUser({ id: 23 }));
-        return () => {
-            source.abort();
-        };
-    }, []);
+    useCartLoading(id);
 
-    return null;
+    return <>{children}</>;
 };

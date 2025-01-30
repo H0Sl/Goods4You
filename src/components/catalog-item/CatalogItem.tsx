@@ -21,12 +21,12 @@ export const CatalogItem: React.FC<CatalogItemProps> = ({ product }) => {
 
     const { carts } = useAppSelector(state => state.userSlice);
 
-    const isInCart = carts.products?.find(
+    const isInCart = carts?.products?.find(
         products => products.id === product.id,
     );
 
     const initialQuantity =
-        isInCart?.quantity === undefined ? 0 : isInCart.quantity;
+        isInCart?.quantity === undefined ? 0 : isInCart?.quantity;
 
     const { state, onMinusValue, onPlusValue } =
         useCounterState(initialQuantity);
@@ -75,7 +75,7 @@ export const CatalogItem: React.FC<CatalogItemProps> = ({ product }) => {
                                 event.stopPropagation();
                                 event.preventDefault();
                             }}
-                            type="btnIcon"
+                            variant="btnIcon"
                         >
                             <img src={icon} className={cl.icon} alt="" />
                         </Button>

@@ -54,7 +54,7 @@ export const ProductText: React.FC<ProductTextProps> = ({ product }) => {
                     className={cl.button}
                     view="text"
                     size="small"
-                    type="btnText"
+                    variant="btnText"
                 >
                     <span className={cl.btnSpan}>Add to cart</span>
                 </Button>

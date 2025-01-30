@@ -7,3 +7,9 @@
     color:var(--main-color);
     line-height:1.47;
 }
+
+@media(max-width:400px){
+    .logo{
+        text-align: center;
+    }
+}
